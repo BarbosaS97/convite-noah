@@ -122,7 +122,7 @@ button { font: inherit; }
 .stand { display: block; width: fit-content; margin: 0 auto -8px; --s: 1; height: min(50vw, 250px); }   /* Pantera em pé no rodapé */
 
 /* ---------- 4) TÍTULO: NOAH / 4 ANOS ---------- */
-.stage { padding-top: calc(env(safe-area-inset-top, 0px) + 62px); }
+.stage { padding-top: calc(env(safe-area-inset-top, 0px) + 68px); }
 .title__kicker { margin: 0 0 .25rem; font: 800 .8rem/1 var(--body); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); text-shadow: 0 2px 10px rgba(0, 0, 0, .45); }
 .name {
   margin: 0; padding-top: .16em; display: flex; justify-content: center; gap: .012em;      /* padding-top: a extrusão sobe e não cobre o texto pequeno */
@@ -165,20 +165,24 @@ button { font: inherit; }
 /* ---------- 5) VÍDEO ---------- */
 .video { display: grid; justify-items: center; }
 .vwrap { --ar: .5625; width: 100%; }
-.vwrap.is-portrait { width: min(100%, 420px, max(280px, calc((100vh - 250px) * var(--ar) + 16px))); width: min(100%, 420px, max(280px, calc((100svh - 250px) * var(--ar) + 16px))); }
-.vhead { --nh: clamp(150px, 44vw, 196px); position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; margin-bottom: calc(var(--nh) * -.04); }
-.vhead__title { padding-bottom: calc(var(--nh) * .04 + 10px); text-align: left; min-width: 0; }
-.noah-top { position: relative; flex: none; height: var(--nh); aspect-ratio: .71; margin-right: 1%; z-index: 3; }
+.vwrap.is-portrait { width: min(100%, 420px); }
+@media (min-width: 600px) {       /* telas grandes: a moldura respeita a altura da tela; no celular ela ocupa a largura toda */
+  .vwrap.is-portrait .frame { width: min(100%, max(300px, calc((100vh - 330px) * var(--ar) + 16px))); width: min(100%, max(300px, calc((100svh - 330px) * var(--ar) + 16px))); margin-inline: auto; }
+}
+.vhead { --nh: clamp(136px, 39vw, 190px); position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; margin-bottom: calc(var(--nh) * -.04); }
+.vhead__title { flex: 1 1 0; padding-bottom: calc(var(--nh) * .04 + 10px); text-align: left; min-width: 0; }
+.noah-top { position: relative; flex: none; height: var(--nh); aspect-ratio: .71; margin-right: 0; z-index: 3; }
 .noah-top::before {                              /* explosão de HQ atrás do Noah */
-  content: ""; position: absolute; inset: 14% -16% 6% -16%; clip-path: var(--burst);
+  content: ""; position: absolute; inset: 14% -6% 6% -6%; clip-path: var(--burst);
   background: radial-gradient(rgba(150, 70, 0, .3) 1.6px, transparent 2.1px) 0 0 / 8px 8px, linear-gradient(160deg, #ffe27a, #ff9d1c);
   animation: glow 4.4s ease-in-out infinite alternate;
 }
 .noah-top img { position: absolute; inset: 0; width: auto; height: 100%; max-width: none; filter: drop-shadow(0 0 1.5px #fff) drop-shadow(0 7px 8px rgba(0, 0, 0, .45)); animation: float 5.2s ease-in-out infinite alternate; }
-.vhead .name { justify-content: flex-start; font-size: clamp(3.4rem, 19vw, 6.4rem); }
-.vhead .age__burst { width: clamp(46px, 12.5vw, 76px); }
-.vhead .age__num { font-size: clamp(1.8rem, 7.6vw, 3rem); }
-.vhead .age__txt { font-size: clamp(1.5rem, 6.6vw, 2.6rem); }
+.vhead .name { justify-content: flex-start; font-size: clamp(2.7rem, 15vw, 5.6rem); }
+.vhead .title__kicker { font-size: .7rem; letter-spacing: .2em; white-space: nowrap; }
+.vhead .age__burst { width: clamp(42px, 11vw, 68px); }
+.vhead .age__num { font-size: clamp(1.6rem, 6.6vw, 2.7rem); }
+.vhead .age__txt { font-size: clamp(1.35rem, 5.8vw, 2.3rem); }
 .frame {
   position: relative; z-index: 1; width: 100%; padding: 6px; border-radius: 32px;
   background: linear-gradient(135deg, #ffd84a 0%, #ff5a3c 34%, #3d63ff 68%, #4fe1ff 100%);
@@ -260,28 +264,38 @@ button { font: inherit; }
 }
 
 /* cards: painéis de HQ */
-.info { display: grid; gap: 14px; margin-top: calc(1.4rem + var(--gx)); }
+.info { display: grid; gap: calc(12px + var(--gx) * .3); margin-top: calc(2.2rem + var(--gx)); }
+/* cada linha: card mais estreito + herói na lateral; as linhas alternam o lado (herói à esquerda / à direita) */
+.info .slot { display: grid; align-items: center; column-gap: 8px; padding-top: 0; }
+.info .slot--left  { grid-template-columns: minmax(0, 33%) minmax(0, 1fr); }
+.info .slot--right { grid-template-columns: minmax(0, 1fr) minmax(0, 33%); }
+.info .slot > .peek { position: relative; top: auto; left: auto; right: auto; z-index: 2; width: 100%; height: calc(var(--ph) * var(--s, 1) * .82); justify-self: center; }
+.info .slot > .peek img { width: 100%; height: 100%; object-fit: contain; }
+.info .slot--left > .peek { grid-column: 1; grid-row: 1; }
+.info .slot--left > .card { grid-column: 2; grid-row: 1; }
+.info .slot--right > .card { grid-column: 1; grid-row: 1; }
+.info .slot--right > .peek { grid-column: 2; grid-row: 1; }
 .card {
-  position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; gap: 16px; padding: 16px 18px 16px 30px;
+  position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; gap: 10px; padding: 12px 12px 12px 26px;
   background: var(--paper); color: var(--ink-d); border: 4px solid var(--ink-d); border-radius: 16px; box-shadow: var(--sticker);
 }
 .card:nth-child(1) { rotate: -1deg; } .card:nth-child(2) { rotate: .8deg; } .card:nth-child(3) { rotate: -.6deg; }
-.card::before { content: ""; position: absolute; z-index: -1; inset: 0 auto 0 0; width: 14px; background: var(--accent); border-right: 4px solid var(--ink-d); }
+.card::before { content: ""; position: absolute; z-index: -1; inset: 0 auto 0 0; width: 12px; background: var(--accent); border-right: 4px solid var(--ink-d); }
 .card::after {                    /* retícula (halftone) no canto */
   content: ""; position: absolute; z-index: -1; inset: 0; opacity: .55;
   background: radial-gradient(var(--accent) 1.8px, transparent 2.3px) 0 0 / 11px 11px;
   -webkit-mask: radial-gradient(90% 140% at 100% 100%, #000 0, transparent 62%); mask: radial-gradient(90% 140% at 100% 100%, #000 0, transparent 62%);
 }
 .card__icon {
-  flex: none; display: grid; place-items: center; width: 68px; height: 68px; border: 4px solid var(--ink-d); border-radius: 50%;
+  flex: none; display: grid; place-items: center; width: 52px; height: 52px; border: 4px solid var(--ink-d); border-radius: 50%;
   background: radial-gradient(rgba(0, 0, 0, .16) 1.5px, transparent 2px) 0 0 / 7px 7px, var(--accent); box-shadow: 3px 4px 0 var(--ink-d);
 }
-.card__icon svg { width: 46px; height: 46px; }
+.card__icon svg { width: 34px; height: 34px; }
 .card h3 {
-  display: inline-block; margin: 0 0 .4rem; padding: .1em .75em .16em; font: 400 .98rem/1.1 var(--display); letter-spacing: .07em;
+  display: inline-block; margin: 0 0 .3rem; padding: .1em .65em .14em; font: 400 .86rem/1.1 var(--display); letter-spacing: .07em;
   color: var(--tagc, #fff); background: var(--accent); border: 3px solid var(--ink-d); transform: skewX(-9deg) rotate(-1.5deg);
 }
-.card p { margin: 0; font: 800 1.2rem/1.15 var(--body); color: var(--ink-d); text-transform: uppercase; overflow-wrap: anywhere; }
+.card p { margin: 0; font: 800 1.02rem/1.15 var(--body); color: var(--ink-d); text-transform: uppercase; overflow-wrap: anywhere; }
 
 /* confirmação: balão de fala */
 .rsvp { margin-top: 2rem; text-align: center; }
@@ -398,9 +412,6 @@ button { font: inherit; }
 
 /* ---------- 9) TELAS MAIORES ---------- */
 @media (min-width: 720px) {
-  .info { grid-template-columns: repeat(3, 1fr); gap: 26px; }
-  .card { flex-direction: column; text-align: center; padding: 34px 14px 22px; gap: 12px; }
-  .card::before { inset: 0 0 auto 0; width: auto; height: 16px; border-right: 0; border-bottom: 4px solid var(--ink-d); }
   .map__canvas { height: 250px; }
   .frame { padding: 8px; border-radius: 38px; }
   .player { border-radius: 30px; }
@@ -413,7 +424,6 @@ button { font: inherit; }
   .vhead .age__burst { width: 60px; }
   .vhead .age__num { font-size: 2.3rem; }
   .vhead .age__txt { font-size: 2rem; }
-  .vwrap.is-portrait { width: min(100%, 420px, max(300px, calc((100vh - 330px) * var(--ar) + 16px))); width: min(100%, 420px, max(300px, calc((100svh - 330px) * var(--ar) + 16px))); }
 }
 
 /* ---------- CAPA DE ENTRADA ("Abrir convite") — garante que a música comece já na abertura ---------- */
