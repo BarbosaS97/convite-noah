@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Noah faz 4 anos! Você está convidado</title>
+  <meta name="description" content="Convite para o aniversário de 4 anos do Noah. Uma aventura heroica está começando!">
+  <meta name="theme-color" content="#0a1150">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Noah faz 4 anos! Você está convidado">
+  <meta property="og:description" content="Uma aventura heroica está começando! Toque para ver o convite.">
+  <!-- Para a prévia no WhatsApp: publique o site e troque por a URL ABSOLUTA da imagem, ex.: https://seudominio.com/public/assets/images/poster.jpg -->
+  <meta property="og:image" content="public/assets/images/poster.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232f5bff'/%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%23ffcf3d' stroke-width='4'/%3E%3Ctext x='32' y='46' font-size='40' font-weight='900' text-anchor='middle' fill='white' font-family='Arial Black,Arial'%3E4%3C/text%3E%3C/svg%3E">
+
+  <link rel="preload" href="public/assets/fonts/luckiest-guy-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip" href="#convite">Ir para o convite</a>
+
+  <!-- fundo cinematográfico -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__aurora"><i></i><i></i><i></i></div>
+    <div class="bg__rays"></div>
+    <div class="bg__dots"></div>
+    <div class="bg__grain"></div>
+  </div>
+  <div class="sparks" id="sparks" aria-hidden="true"></div>
+
+  <!-- música de fundo (aparece só se public/assets/audio/musica.mp3 existir) -->
+  <button class="music" id="music" type="button" aria-pressed="false" aria-label="Ligar música de fundo" hidden>
+    <svg class="music__icon i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.6L12 18.5v-13L7.6 9.5H4Z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m15.5 9.5 5 5m0-5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+    <svg class="music__icon i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.6L12 18.5v-13L7.6 9.5H4Z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+    <span class="music__txt">Música</span>
+  </button>
+
+  <main id="convite" class="page">
+
+    <!-- ===================== 1) TOPO: PERSONAGENS + NOME ===================== -->
+    <div class="stage">
+    <header class="top">
+      <!--
+        PERSONAGENS (imagens em public/assets/heroes/). Para trocar um herói, coloque a nova imagem em
+        tools/heroes-originais/<nome>.png|jpg e rode `python tools/process-heroes.py` (remove o fundo e gera os .webp),
+        ou simplesmente substitua public/assets/heroes/<nome>.webp por outro WebP/PNG com fundo transparente.
+        Celular/tablet: 4 heróis no topo e 3 no rodapé. Telas grandes: emolduram as laterais.
+      -->
+      <div class="heroes heroes--top">
+        <div class="hero hero--spiderman" style="--i:0;--glow:#ff3b4e">
+          <img src="public/assets/heroes/spiderman.webp" width="352" height="447" alt="Homem-Aranha infantil em posição de ataque" fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero hero--ironman" style="--i:1;--glow:#ffb020">
+          <img src="public/assets/heroes/ironman.webp" srcset="public/assets/heroes/ironman-s.webp 360w, public/assets/heroes/ironman.webp 542w" sizes="(min-width:1280px) 240px, 30vw" width="542" height="548" alt="Homem de Ferro infantil com a mão pronta para disparar" fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero hero--hulk" style="--i:2;--glow:#7cff4a">
+          <img src="public/assets/heroes/hulk.webp" width="288" height="453" alt="Hulk infantil de punhos fechados" fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero hero--batman" style="--i:3;--glow:#ffd83a">
+          <img src="public/assets/heroes/batman.webp" srcset="public/assets/heroes/batman-s.webp 360w, public/assets/heroes/batman.webp 411w" sizes="(min-width:1280px) 260px, 34vw" width="411" height="348" alt="Batman infantil voando com a capa aberta" fetchpriority="high" decoding="async">
+        </div>
+      </div>
+
+      <div class="title">
+        <p class="title__kicker reveal">Aniversário do</p>
+        <h1 class="name" aria-label="Noah">
+          <span class="ch" data-c="N" style="--k:0;--r:-5deg;--y:.02em" aria-hidden="true">N</span><span class="ch" data-c="O" style="--k:1;--r:3deg;--y:-.02em" aria-hidden="true">O</span><span class="ch" data-c="A" style="--k:2;--r:-3deg;--y:.02em" aria-hidden="true">A</span><span class="ch" data-c="H" style="--k:3;--r:5deg;--y:-.01em" aria-hidden="true">H</span>
+        </h1>
+        <div class="age" aria-label="4 anos">
+          <span class="age__burst" aria-hidden="true"><span class="age__num">4</span></span>
+          <span class="age__txt" data-c="ANOS" aria-hidden="true">ANOS</span>
+        </div>
+        <p class="tagline reveal">Uma aventura heroica está começando!</p>
+        <div class="count" id="countdown" hidden aria-live="off">
+          <p class="count__label">Faltam</p>
+          <ul class="count__grid">
+            <li><b data-u="d">0</b><span>dias</span></li>
+            <li><b data-u="h">0</b><span>horas</span></li>
+            <li><b data-u="m">0</b><span>min</span></li>
+            <li><b data-u="s">0</b><span>seg</span></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== 2) VÍDEO ===================== -->
+    <section class="video reveal" aria-labelledby="video-title">
+      <h2 id="video-title" class="sr-only">Vídeo de aniversário do Noah</h2>
+
+      <!-- >>> ONDE COLOCAR O VÍDEO: public/assets/video/aniversario.mp4  (caminho definido em config.js) <<< -->
+      <div class="frame is-portrait" id="frame">
+        <i class="frame__star frame__star--tl" aria-hidden="true"></i>
+        <i class="frame__star frame__star--tr" aria-hidden="true"></i>
+        <i class="frame__star frame__star--bl" aria-hidden="true"></i>
+        <i class="frame__star frame__star--br" aria-hidden="true"></i>
+
+        <div class="player" id="player" data-state="loading">
+          <video id="video" muted playsinline loop preload="metadata" poster="public/assets/images/poster-video.webp" aria-label="Vídeo de aniversário do Noah"></video>
+
+          <!-- aparece se o vídeo não existir ou não carregar -->
+          <div class="fallback" id="fallback" hidden>
+            <img src="public/assets/images/poster.webp" alt="" width="1280" height="720" decoding="async">
+            <div class="fallback__msg">
+              <span class="fallback__badge" aria-hidden="true"><svg viewBox="0 0 40 40"><path fill="currentColor" stroke="#0a0f3a" stroke-width="3" stroke-linejoin="round" d="M20 3l4.6 12.4L38 16l-10.6 8.4L31 37l-11-7.4L9 37l3.6-12.6L2 16l13.4-.6z"/></svg></span>
+              <p>Nosso vídeo especial está chegando!</p>
+            </div>
+          </div>
+
+          <button class="vplay" id="play" type="button" aria-label="Reproduzir vídeo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg>
+          </button>
+
+          <div class="vbar" id="vbar">
+            <button class="vbtn" id="toggle" type="button" aria-label="Pausar vídeo">
+              <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>
+              <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg>
+            </button>
+            <input class="vprogress" id="progress" type="range" min="0" max="1000" value="0" step="1" aria-label="Progresso do vídeo">
+            <button class="vbtn" id="full" type="button" aria-label="Tela cheia">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div><!-- /stage -->
+
+    <p class="invited reveal"><span>Você está convidado!</span></p>
+
+    <!-- ===================== 3) INFORMAÇÕES DA FESTA ===================== -->
+    <section class="info" aria-label="Informações da festa">
+      <article class="card reveal" style="--d:0s;--accent:#e11d3f;--tagc:#fff">
+        <span class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><g stroke="#0a0f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="12" width="48" height="45" rx="7" fill="#fff"/><path d="M8 19a7 7 0 0 1 7-7h34a7 7 0 0 1 7 7v10H8z" fill="#ffc41f"/><path d="M21 5v14M43 5v14" fill="none" stroke-width="6"/><path d="M19 39h7M30 39h7M41 39h4M19 48h7M30 48h7" fill="none" stroke="#e11d3f" stroke-width="4.4"/></g></svg>
+        </span>
+        <div class="card__body"><h3>DATA</h3><p data-field="data">DATA A DEFINIR</p></div>
+      </article>
+      <article class="card reveal" style="--d:.1s;--accent:#ffc41f;--tagc:#0a0f3a">
+        <span class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><g stroke="#0a0f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="15" cy="15" r="8" fill="#e11d3f"/><circle cx="49" cy="15" r="8" fill="#e11d3f"/><circle cx="32" cy="35" r="23" fill="#fff"/><path d="M32 35V21M32 35l10 7" fill="none" stroke-width="5"/><circle cx="32" cy="35" r="2.4" fill="#0a0f3a"/></g></svg>
+        </span>
+        <div class="card__body"><h3>HORÁRIO</h3><p data-field="horario">HORÁRIO A DEFINIR</p></div>
+      </article>
+      <article class="card reveal" style="--d:.2s;--accent:#2352e0;--tagc:#fff">
+        <span class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><g stroke="#0a0f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M32 4C20 4 11 13 11 25c0 15 21 35 21 35s21-20 21-35C53 13 44 4 32 4Z" fill="#e11d3f"/><circle cx="32" cy="25" r="9" fill="#fff"/></g></svg>
+        </span>
+        <div class="card__body"><h3>LOCAL</h3><p data-field="local">LOCAL A DEFINIR</p></div>
+      </article>
+    </section>
+
+    <!-- ===================== 4) CONFIRMAÇÃO ===================== -->
+    <section class="rsvp reveal" aria-labelledby="rsvp-title">
+      <div class="bubble">
+        <h2 id="rsvp-title" class="bubble__title">Confirme sua <em>presença</em></h2>
+        <p class="rsvp__sub">Toque no botão e avise a gente pelo WhatsApp.</p>
+        <i class="bubble__tail" aria-hidden="true"></i>
+      </div>
+      <!-- o link vem de config.js (whatsappLink) -->
+      <a class="btn btn--hero" id="rsvp" href="#" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.06c-.25.7-1.44 1.34-2 1.4-.5.06-1.13.09-1.83-.12a16.6 16.6 0 0 1-1.66-.61c-2.9-1.25-4.8-4.16-4.94-4.36-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.4.26-.3.57-.37.76-.37h.55c.18 0 .42-.07.65.5.25.58.83 2 .9 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.5-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.05 1.13 1 2.09 1.32 2.39 1.47.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg>
+        <span>CONFIRMAR PRESENÇA</span>
+      </a>
+    </section>
+
+    <!-- ===================== 5) LOCALIZAÇÃO ===================== -->
+    <section class="map reveal" aria-labelledby="map-title">
+      <h2 id="map-title" class="tag">Como chegar</h2>
+      <div class="map__canvas" id="mapCanvas">
+        <svg class="map__art" viewBox="0 0 600 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <defs><pattern id="ht" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.6" fill="#ff9d2e" opacity=".5"/></pattern></defs>
+          <rect width="600" height="260" fill="#fff3d1"/><rect width="600" height="260" fill="url(#ht)"/>
+          <g stroke="#0a0f3a" stroke-width="3.5" stroke-linejoin="round">
+            <rect x="24" y="26" width="150" height="72" rx="10" fill="#bfe2ff"/><rect x="204" y="26" width="120" height="60" rx="10" fill="#ffd9a0"/>
+            <rect x="366" y="24" width="200" height="72" rx="10" fill="#b8f0c8"/><rect x="24" y="146" width="120" height="86" rx="10" fill="#ffd9a0"/>
+            <rect x="176" y="146" width="140" height="86" rx="10" fill="#e7d3ff"/><rect x="366" y="146" width="80" height="86" rx="10" fill="#bfe2ff"/><rect x="474" y="146" width="96" height="86" rx="10" fill="#b8f0c8"/>
+          </g>
+          <g fill="none" stroke-linecap="round"><g stroke="#0a0f3a" stroke-width="26"><path d="M-10 118H610M345 -10V270"/></g><g stroke="#fff" stroke-width="19"><path d="M-10 118H610M345 -10V270"/></g><path d="M-10 118H610" stroke="#ffc41f" stroke-width="2.5" stroke-dasharray="14 12"/></g>
+          <path class="route" d="M40 118H345V70" fill="none" stroke="#e11d3f" stroke-width="7" stroke-dasharray="2 15" stroke-linecap="round"/>
+          <g transform="translate(345 66)"><g class="pin"><path d="M0 0C-13 -16-20 -24-20 -36a20 20 0 0 1 40 0C20 -24 13 -16 0 0Z" fill="#e11d3f" stroke="#0a0f3a" stroke-width="4" stroke-linejoin="round"/><circle cx="0" cy="-36" r="8" fill="#fff" stroke="#0a0f3a" stroke-width="3.5"/></g></g>
+        </svg>
+        <p class="map__text" data-field="localizacaoTexto">LOCALIZAÇÃO_AQUI</p>
+      </div>
+      <!-- o link vem de config.js (localizacaoUrl) -->
+      <a class="btn btn--blue" id="mapBtn" href="#" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+        <span>VER LOCALIZAÇÃO</span>
+      </a>
+    </section>
+
+    <!-- ===================== 6) RODAPÉ: PERSONAGENS ===================== -->
+    <footer class="foot">
+      <p class="foot__msg reveal">Te esperamos para essa aventura!</p>
+      <div class="heroes heroes--bottom">
+        <div class="hero hero--captain" style="--i:4;--glow:#5f9bff">
+          <img src="public/assets/heroes/captain.webp" srcset="public/assets/heroes/captain-s.webp 305w, public/assets/heroes/captain.webp 441w" sizes="(min-width:1280px) 190px, 28vw" width="441" height="695" alt="Capitão América infantil com o escudo" decoding="async">
+        </div>
+        <div class="hero hero--thor" style="--i:5;--glow:#6fd6ff">
+          <img src="public/assets/heroes/thor.webp" srcset="public/assets/heroes/thor-s.webp 339w, public/assets/heroes/thor.webp 442w" sizes="(min-width:1280px) 200px, 30vw" width="442" height="626" alt="Thor infantil com o martelo Mjölnir" decoding="async">
+        </div>
+        <div class="hero hero--panther" style="--i:6;--glow:#c58cff">
+          <img src="public/assets/heroes/panther.webp" srcset="public/assets/heroes/panther-s.webp 259w, public/assets/heroes/panther.webp 475w" sizes="(min-width:1280px) 170px, 22vw" width="475" height="880" alt="Pantera Negra infantil em posição de luta" decoding="async">
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- botão fixo de confirmação (aparece ao rolar; usa o mesmo link do WhatsApp) -->
+  <a class="dock" id="dock" href="#" rel="noopener" aria-hidden="true" tabindex="-1">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.06c-.25.7-1.44 1.34-2 1.4-.5.06-1.13.09-1.83-.12a16.6 16.6 0 0 1-1.66-.61c-2.9-1.25-4.8-4.16-4.94-4.36-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.4.26-.3.57-.37.76-.37h.55c.18 0 .42-.07.65.5.25.58.83 2 .9 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.5-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.05 1.13 1 2.09 1.32 2.39 1.47.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg>
+    <span>CONFIRMAR PRESENÇA</span>
+  </a>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js" charset="utf-8"></script>
+  <script src="script.js" charset="utf-8" defer></script>
+</body>
+</html>

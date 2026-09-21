@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>poster</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; }
+  .stage { position: relative; width: 1280px; height: 720px; overflow: hidden;
+    background: radial-gradient(90% 70% at 50% 0%, #4a66ff 0%, rgba(74,102,255,0) 62%), radial-gradient(80% 50% at 50% 115%, #7b22ab 0%, rgba(123,34,171,0) 62%), linear-gradient(180deg, #0f1c7e, #070c3f); }
+  .rays { position: absolute; left: 50%; top: -700px; width: 1800px; height: 1800px; margin-left: -900px;
+    background: repeating-conic-gradient(rgba(255,255,255,.09) 0 4deg, transparent 4deg 11deg);
+    -webkit-mask: radial-gradient(closest-side, #000 12%, transparent 70%); mask: radial-gradient(closest-side, #000 12%, transparent 70%); }
+  .dots { position: absolute; inset: 0; background: radial-gradient(rgba(255,255,255,.12) 1.4px, transparent 1.9px) 0 0/16px 16px; opacity: .5;
+    -webkit-mask: linear-gradient(180deg, transparent, #000 60%, transparent); mask: linear-gradient(180deg, transparent, #000 60%, transparent); }
+  .head { position: absolute; left: 0; right: 0; top: 34px; text-align: center; }
+  .head .name { font-size: 200px; }
+  .head .age { margin-top: 6px; }
+  .row { position: absolute; left: 0; right: 0; bottom: -14px; display: flex; justify-content: center; align-items: flex-end; gap: 0; }
+  .row .hero { --hh: 262px; margin-inline: -14px; animation: none; position: relative; }
+  .row .hero img { animation: none; }
+  .row .hero:nth-child(even) { margin-bottom: 22px; }
+  .star { position: absolute; width: 26px; height: 26px; background: #fff; clip-path: polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%); opacity: .85; }
+</style></head>
+<body>
+<div class="stage">
+  <div class="rays"></div><div class="dots"></div>
+  <i class="star" style="left:90px;top:80px"></i><i class="star" style="left:1130px;top:120px;width:34px;height:34px;background:#ffe27a"></i>
+  <i class="star" style="left:220px;top:300px;width:16px;height:16px;background:#8fe3ff"></i><i class="star" style="left:1040px;top:300px;width:18px;height:18px"></i>
+  <i class="star" style="left:600px;top:20px;width:14px;height:14px;background:#ffe27a"></i>
+  <div class="head">
+    <h1 class="name" aria-label="Noah">
+      <span class="ch" data-c="N" style="--r:-5deg;--y:.02em">N</span><span class="ch" data-c="O" style="--r:3deg;--y:-.02em">O</span><span class="ch" data-c="A" style="--r:-3deg;--y:.02em">A</span><span class="ch" data-c="H" style="--r:5deg;--y:-.01em">H</span>
+    </h1>
+    <div class="age"><span class="age__burst"><span class="age__num">4</span></span><span class="age__txt" data-c="ANOS">ANOS</span></div>
+  </div>
+  <div class="row">
+    <div class="hero hero--captain" style="--glow:#3c7bff"><img src="../public/assets/heroes/captain.webp" alt=""></div>
+    <div class="hero hero--spiderman" style="--glow:#ff3b4e"><img src="../public/assets/heroes/spiderman.webp" alt=""></div>
+    <div class="hero hero--hulk" style="--glow:#7cff4a"><img src="../public/assets/heroes/hulk.webp" alt=""></div>
+    <div class="hero hero--ironman" style="--glow:#ffb020"><img src="../public/assets/heroes/ironman.webp" alt=""></div>
+    <div class="hero hero--batman" style="--glow:#ffd83a"><img src="../public/assets/heroes/batman.webp" alt=""></div>
+    <div class="hero hero--thor" style="--glow:#6fd6ff"><img src="../public/assets/heroes/thor.webp" alt=""></div>
+    <div class="hero hero--panther" style="--glow:#b678ff"><img src="../public/assets/heroes/panther.webp" alt=""></div>
+  </div>
+</div>
+</body></html>
