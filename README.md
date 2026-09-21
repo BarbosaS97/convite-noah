@@ -1,8 +1,8 @@
 # Convite de aniversário do Noah, 4 anos
 
 Convite web de uma página só (HTML + CSS + JavaScript, sem bibliotecas), mobile first, em estilo quadrinhos.
-Ordem da página: capa "Abrir convite" (foto do Noah) → **vídeo** → informações (data, horário, local) → confirmação → mapa.
-Os sete super-heróis ficam ao fundo, espiando por trás dos blocos.
+Ordem da página: capa "Abrir convite" (foto do Noah) → nome → **Noah grande no centro com os super-heróis menores nas laterais** →
+**vídeo** → informações (data, horário, local) → confirmação → mapa → a mesma fileira do Noah com os heróis no final.
 
 ## Como executar
 
@@ -42,8 +42,9 @@ com esses nomes, ou mude o `src` no `index.html` (procure `cover__photo` e `noah
 
 ## Super-heróis
 
-Ficam em `public/assets/heroes/*.webp` (fundo transparente), ao fundo: cada um espia por trás de um bloco da página
-(Homem-Aranha na faixa "Você está convidado!"; Homem de Ferro, Hulk e Batman nas laterais dos cards, alternando os lados; Capitão no balão de confirmação; Thor no mapa; Pantera no rodapé). Nunca cobrem texto. Para trocar um herói, coloque a nova imagem em
+Ficam em `public/assets/heroes/*.webp` (fundo transparente) e aparecem na fileira ao lado do Noah, no topo e no final:
+à esquerda Homem de Ferro, Hulk e Batman; à direita Capitão América, Thor e Pantera Negra. O Homem-Aranha é o próprio Noah (a foto);
+a arte chibi `spiderman.webp` continua na pasta, sem uso no momento (para incluí-la, copie um bloco `<div class="hero ...">` em `index.html`). Para trocar um herói, coloque a nova imagem em
 `tools/heroes-originais/<nome>.png` (nomes: `spiderman`, `ironman`, `hulk`, `batman`, `captain`, `thor`, `panther`)
 e rode `python tools/process-heroes.py` (remove o fundo e gera os `.webp`). Depois ajuste `width`/`height` da `<img>`
 correspondente em `index.html` se a proporção mudar.
@@ -61,7 +62,7 @@ Para a **prévia no WhatsApp**, em `index.html` troque o `og:image` pelo endere�
 2. No GitHub: **Settings > Pages > Build and deployment > Deploy from a branch > main / (root)**.
 3. Abra o endereço `https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/` (não abra o `index.html` pela tela do repositório nem pelo
    "raw": ali o site não funciona).
-4. Se atualizar e o celular mostrar a versão antiga, feche a aba e abra de novo (os arquivos levam `?v=14` para forçar a atualização;
+4. Se atualizar e o celular mostrar a versão antiga, feche a aba e abra de novo (os arquivos levam `?v=18` para forçar a atualização;
    ao mudar algo, aumente esse número no `index.html`).
 5. **Diagnóstico:** acrescente `?debug` ao endereço (ex.: `.../repo/?debug`) para ver na tela qualquer erro de JavaScript.
 

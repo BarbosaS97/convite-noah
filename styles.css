@@ -34,7 +34,7 @@ button { font: inherit; }
 :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; border-radius: 8px; }
 
 .page { position: relative; z-index: 2; display: flow-root; overflow-x: clip; max-width: 100%; }
-.stage, .invited, .info, .rsvp, .map { width: var(--w); margin-inline: auto; }
+.top, .invited, .info, .rsvp, .map, .intro { width: var(--w); margin-inline: auto; }
 
 /* ---------- 2) FUNDO CINEMATOGRÁFICO ---------- */
 .bg {
@@ -111,22 +111,26 @@ button { font: inherit; }
 .hero--thor      { --s: 1;    --fd: 5.2s; }
 .hero--panther   { --s: 1.08; --fd: 6.0s; }
 
-/* "slot": o herói fica POR CIMA do bloco, mas com espaço próprio reservado: só ~6% da altura encosta na borda do bloco (nunca no texto).
-   Quanto mais estreita a tela, mais os heróis se afastam e mais a página se estica na vertical. */
-.slot { position: relative; padding-top: calc(var(--ph) * var(--s, 1) * .94 + var(--gx)); }
-.slot > .peek { position: absolute; top: 0; z-index: 3; }
-.slot > :not(.peek) { position: relative; z-index: 1; }
-.slot--right > .peek { right: 6%; }
-.slot--left > .peek { left: 6%; }
-.invited-slot { width: var(--w); margin: calc(1.6rem + var(--gx)) auto 0; }
-.stand { display: block; width: fit-content; margin: 0 auto -8px; --s: 1; height: min(50vw, 250px); }   /* Pantera em pé no rodapé */
+/* ---------- FILEIRA: Noah grande no centro, super-heróis menores nas laterais (topo e final da página) ---------- */
+.lineup { width: min(calc(100% - 12px), 520px); margin: 1rem auto 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.95fr) minmax(0, 1fr); align-items: stretch; column-gap: 4px; position: relative; }
+.lineup__noah { position: relative; display: grid; place-items: end center; min-width: 0; }
+.lineup__noah::before {                            /* explosão de HQ atrás do Noah (vai um pouco para trás dos heróis) */
+  content: ""; position: absolute; inset: 8% -12% 3% -12%; clip-path: var(--burst);
+  background: radial-gradient(rgba(150, 70, 0, .3) 1.6px, transparent 2.1px) 0 0 / 8px 8px, linear-gradient(160deg, #ffe27a, #ff9d1c);
+  animation: burst-pulse 4.4s ease-in-out infinite alternate;
+}
+.lineup__noah img { position: relative; display: block; width: 100%; height: auto; filter: drop-shadow(0 0 1.5px #fff) drop-shadow(0 8px 9px rgba(0, 0, 0, .45)); animation: float 5.2s ease-in-out infinite alternate; }
+.lineup__side { position: relative; z-index: 2; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 6px; min-width: 0; height: 100%; }
+.lineup__side .hero { --fa: -4px; position: relative; width: 100%; height: 100%; min-height: 0; }
+.lineup__side .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.lineup--end { margin-top: .6rem; }
 
 /* ---------- 4) TÍTULO: NOAH / 4 ANOS ---------- */
-.stage { padding-top: calc(env(safe-area-inset-top, 0px) + 68px); }
-.title__kicker { margin: 0 0 .25rem; font: 800 .8rem/1 var(--body); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); text-shadow: 0 2px 10px rgba(0, 0, 0, .45); }
+.top { padding-top: calc(env(safe-area-inset-top, 0px) + 66px); text-align: center; }
+.title__kicker { margin: 0 0 .3rem; font: 800 .8rem/1 var(--body); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); text-shadow: 0 2px 10px rgba(0, 0, 0, .45); }
 .name {
-  margin: 0; padding-top: .16em; display: flex; justify-content: center; gap: .012em;      /* padding-top: a extrusão sobe e não cobre o texto pequeno */
-  font: 400 clamp(4rem, 25vw, 12rem)/.95 var(--display);
+  margin: 0 auto; padding-top: .16em; display: flex; justify-content: center; gap: .012em;      /* padding-top: a extrusão sobe e não cobre o texto pequeno */
+  font: 400 clamp(3.6rem, 22vw, 8rem)/.95 var(--display);
   filter: drop-shadow(0 .05em .08em rgba(0, 0, 0, .4));
 }
 .ch { position: relative; display: inline-block; color: transparent; transform: translateY(var(--y, 0)) rotate(var(--r, 0deg)); animation: letter-in .95s cubic-bezier(.2, 1.5, .35, 1) calc(.5s + var(--k) * .11s) backwards; }
@@ -139,7 +143,7 @@ button { font: inherit; }
   background: linear-gradient(180deg, #fffbd6 0%, #ffe45c 28%, #ffb020 62%, #ff7a1a 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: .018em #b34700;
 }
-.age { display: inline-flex; align-items: center; gap: .5rem; margin-top: .4rem; }
+.age { display: inline-flex; align-items: center; gap: .55rem; margin-top: .5rem; }
 .age__burst {
   position: relative; display: grid; place-items: center; width: clamp(66px, 18vw, 112px); aspect-ratio: 1;
   --star: polygon(50.0% 0.0%, 60.6% 10.4%, 75.0% 6.7%, 79.0% 21.0%, 93.3% 25.0%, 89.6% 39.4%, 100.0% 50.0%, 89.6% 60.6%, 93.3% 75.0%, 79.0% 79.0%, 75.0% 93.3%, 60.6% 89.6%, 50.0% 100.0%, 39.4% 89.6%, 25.0% 93.3%, 21.0% 79.0%, 6.7% 75.0%, 10.4% 60.6%, 0.0% 50.0%, 10.4% 39.4%, 6.7% 25.0%, 21.0% 21.0%, 25.0% 6.7%, 39.4% 10.4%);
@@ -156,33 +160,16 @@ button { font: inherit; }
 .age__txt::before, .age__txt::after { content: attr(data-c); position: absolute; left: 0; top: 0; }
 .age__txt::before { color: #1a34c9; -webkit-text-stroke: .17em #1a34c9; paint-order: stroke fill; text-shadow: 0 .05em 0 #142aa3, 0 .1em 0 #0f2085, 0 .15em 0 #0c1a6b, 0 .21em .12em rgba(0, 0, 0, .45); }
 .age__txt::after { background: linear-gradient(180deg, #fff, #d8f4ff 60%, #8fdcff); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.intro { width: var(--w); margin: 1.8rem auto 0; text-align: center; }
+.intro { margin-top: 1.8rem; text-align: center; }
 .tagline {
   margin: 0 auto; max-width: 21ch; font: 700 clamp(1.2rem, 4.8vw, 1.7rem)/1.22 var(--body); color: #fff;
   text-shadow: 0 2px 16px rgba(79, 216, 255, .6), 0 2px 3px rgba(0, 0, 0, .4); text-wrap: balance;
 }
 
 /* ---------- 5) VÍDEO ---------- */
-.video { display: grid; justify-items: center; }
+.video { display: grid; justify-items: center; width: var(--w); margin: 1.6rem auto 0; }
 .vwrap { --ar: .5625; width: 100%; }
 .vwrap.is-portrait { width: min(100%, 420px); }
-@media (min-width: 600px) {       /* telas grandes: a moldura respeita a altura da tela; no celular ela ocupa a largura toda */
-  .vwrap.is-portrait .frame { width: min(100%, max(300px, calc((100vh - 330px) * var(--ar) + 16px))); width: min(100%, max(300px, calc((100svh - 330px) * var(--ar) + 16px))); margin-inline: auto; }
-}
-.vhead { --nh: clamp(136px, 39vw, 190px); position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; margin-bottom: calc(var(--nh) * -.04); }
-.vhead__title { flex: 1 1 0; padding-bottom: calc(var(--nh) * .04 + 10px); text-align: left; min-width: 0; }
-.noah-top { position: relative; flex: none; height: var(--nh); aspect-ratio: .71; margin-right: 0; z-index: 3; }
-.noah-top::before {                              /* explosão de HQ atrás do Noah */
-  content: ""; position: absolute; inset: 14% -6% 6% -6%; clip-path: var(--burst);
-  background: radial-gradient(rgba(150, 70, 0, .3) 1.6px, transparent 2.1px) 0 0 / 8px 8px, linear-gradient(160deg, #ffe27a, #ff9d1c);
-  animation: glow 4.4s ease-in-out infinite alternate;
-}
-.noah-top img { position: absolute; inset: 0; width: auto; height: 100%; max-width: none; filter: drop-shadow(0 0 1.5px #fff) drop-shadow(0 7px 8px rgba(0, 0, 0, .45)); animation: float 5.2s ease-in-out infinite alternate; }
-.vhead .name { justify-content: flex-start; font-size: clamp(2.7rem, 15vw, 5.6rem); }
-.vhead .title__kicker { font-size: .7rem; letter-spacing: .2em; white-space: nowrap; }
-.vhead .age__burst { width: clamp(42px, 11vw, 68px); }
-.vhead .age__num { font-size: clamp(1.6rem, 6.6vw, 2.7rem); }
-.vhead .age__txt { font-size: clamp(1.35rem, 5.8vw, 2.3rem); }
 .frame {
   position: relative; z-index: 1; width: 100%; padding: 6px; border-radius: 32px;
   background: linear-gradient(135deg, #ffd84a 0%, #ff5a3c 34%, #3d63ff 68%, #4fe1ff 100%);
@@ -199,7 +186,7 @@ button { font: inherit; }
 .frame__star--bl { left: -6px; bottom: -10px; width: 26px; height: 26px; animation-delay: -2s; }
 .frame__star--br { right: -6px; bottom: -12px; animation-delay: -.5s; }
 
-.player { position: relative; width: 100%; border-radius: 26px; overflow: hidden; background: #050a30; aspect-ratio: var(--vr, 9 / 16); max-height: 80vh; max-height: 80svh; isolation: isolate; }
+.player { position: relative; width: 100%; border-radius: 26px; overflow: hidden; background: #050a30; aspect-ratio: var(--vr, 9 / 16); isolation: isolate; }
 .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #050a30; }
 .fallback { position: absolute; inset: 0; z-index: 1; }
 .fallback img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -247,7 +234,7 @@ button { font: inherit; }
 :root { --ink-d: #0a0f3a; --paper: #fff8e6; --sticker: 0 0 0 3px #fff, 8px 9px 0 3px rgba(0, 0, 8, .6); }
 
 /* faixa "VOCÊ ESTÁ CONVIDADO!" */
-.invited { margin: 0; text-align: center; }
+.invited { margin: 1.8rem auto 0; text-align: center; }
 .invited span {
   display: inline-block; max-width: calc(100% - 28px); padding: .3em .9em .42em; rotate: -2.5deg; transform: skewX(-7deg);
   font: 400 clamp(1.8rem, 7.6vw, 3rem)/1 var(--display); letter-spacing: .03em; color: #fff;
@@ -264,19 +251,9 @@ button { font: inherit; }
 }
 
 /* cards: painéis de HQ */
-.info { display: grid; gap: calc(12px + var(--gx) * .3); margin-top: calc(2.2rem + var(--gx)); }
-/* cada linha: card mais estreito + herói na lateral; as linhas alternam o lado (herói à esquerda / à direita) */
-.info .slot { display: grid; align-items: center; column-gap: 8px; padding-top: 0; }
-.info .slot--left  { grid-template-columns: minmax(0, 33%) minmax(0, 1fr); }
-.info .slot--right { grid-template-columns: minmax(0, 1fr) minmax(0, 33%); }
-.info .slot > .peek { position: relative; top: auto; left: auto; right: auto; z-index: 2; width: 100%; height: calc(var(--ph) * var(--s, 1) * .82); justify-self: center; }
-.info .slot > .peek img { width: 100%; height: 100%; object-fit: contain; }
-.info .slot--left > .peek { grid-column: 1; grid-row: 1; }
-.info .slot--left > .card { grid-column: 2; grid-row: 1; }
-.info .slot--right > .card { grid-column: 1; grid-row: 1; }
-.info .slot--right > .peek { grid-column: 2; grid-row: 1; }
+.info { display: grid; gap: 16px; margin-top: 1.6rem; max-width: 560px; }
 .card {
-  position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; gap: 10px; padding: 12px 12px 12px 26px;
+  position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; gap: 14px; padding: 16px 18px 16px 30px;
   background: var(--paper); color: var(--ink-d); border: 4px solid var(--ink-d); border-radius: 16px; box-shadow: var(--sticker);
 }
 .card:nth-child(1) { rotate: -1deg; } .card:nth-child(2) { rotate: .8deg; } .card:nth-child(3) { rotate: -.6deg; }
@@ -287,18 +264,18 @@ button { font: inherit; }
   -webkit-mask: radial-gradient(90% 140% at 100% 100%, #000 0, transparent 62%); mask: radial-gradient(90% 140% at 100% 100%, #000 0, transparent 62%);
 }
 .card__icon {
-  flex: none; display: grid; place-items: center; width: 52px; height: 52px; border: 4px solid var(--ink-d); border-radius: 50%;
+  flex: none; display: grid; place-items: center; width: 60px; height: 60px; border: 4px solid var(--ink-d); border-radius: 50%;
   background: radial-gradient(rgba(0, 0, 0, .16) 1.5px, transparent 2px) 0 0 / 7px 7px, var(--accent); box-shadow: 3px 4px 0 var(--ink-d);
 }
-.card__icon svg { width: 34px; height: 34px; }
+.card__icon svg { width: 40px; height: 40px; }
 .card h3 {
-  display: inline-block; margin: 0 0 .3rem; padding: .1em .65em .14em; font: 400 .86rem/1.1 var(--display); letter-spacing: .07em;
+  display: inline-block; margin: 0 0 .35rem; padding: .1em .7em .14em; font: 400 .92rem/1.1 var(--display); letter-spacing: .07em;
   color: var(--tagc, #fff); background: var(--accent); border: 3px solid var(--ink-d); transform: skewX(-9deg) rotate(-1.5deg);
 }
-.card p { margin: 0; font: 800 1.02rem/1.15 var(--body); color: var(--ink-d); text-transform: uppercase; overflow-wrap: anywhere; }
+.card p { margin: 0; font: 800 1.15rem/1.18 var(--body); color: var(--ink-d); text-transform: uppercase; overflow-wrap: anywhere; }
 
 /* confirmação: balão de fala */
-.rsvp { margin-top: 2rem; text-align: center; }
+.rsvp { margin-top: 2.6rem; text-align: center; }
 .bubble {
   position: relative; max-width: 540px; margin: 0 auto 38px; padding: 22px 22px 20px; background: #fff; color: var(--ink-d);
   border: 4px solid var(--ink-d); border-radius: 30px; box-shadow: var(--sticker);
@@ -327,11 +304,9 @@ button { font: inherit; }
 .map__canvas iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .map__canvas.has-embed .map__art, .map__canvas.has-embed .map__text { display: none; }
 
-.slot + .btn, .slot + * { margin-top: 0; }
-.rsvp .slot { margin-bottom: 0; }
 .rsvp .btn, .map .btn { margin-top: 0; }
-.map .slot { margin-bottom: 1.6rem; }
-.foot { position: relative; margin-top: 2.6rem; text-align: center; overflow: hidden; overflow: clip; }
+.map__canvas { margin-bottom: 1.6rem; }
+.foot { position: relative; margin-top: 3rem; text-align: center; overflow: hidden; overflow: clip; }
 .foot__msg { position: relative; z-index: 2; margin: 0 auto .8rem; padding-inline: 18px; max-width: 30ch; text-wrap: balance; font: 400 clamp(1.15rem, 5vw, 1.7rem)/1.15 var(--display); letter-spacing: .03em; color: #ffd23f; -webkit-text-stroke: .14em var(--ink-d); paint-order: stroke fill; text-shadow: .05em .07em 0 var(--ink-d); }
 
 /* ---------- 7) BOTÕES (adesivos de HQ) ---------- */
@@ -407,6 +382,7 @@ button { font: inherit; }
 @keyframes pin { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 @keyframes march { to { stroke-dashoffset: -34; } }
 @keyframes pin-svg { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes burst-pulse { from { transform: scale(.97) rotate(-1deg); } to { transform: scale(1.03) rotate(1deg); } }
 @keyframes photo-in { from { opacity: 0; transform: scale(.7) translateY(20px); } }
 @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.14) rotate(-3deg); } 100% { transform: scale(1); } }
 
@@ -418,12 +394,6 @@ button { font: inherit; }
 }
 @media (min-width: 900px) { .stage { padding-top: 70px; } }
 @media (min-width: 720px) {
-  :root { --ph: min(22vw, 220px); }
-  .vhead { --nh: 188px; }                       /* cabeçalho do vídeo: título e foto cabem nos 420 px da moldura */
-  .vhead .name { font-size: 4.4rem; }
-  .vhead .age__burst { width: 60px; }
-  .vhead .age__num { font-size: 2.3rem; }
-  .vhead .age__txt { font-size: 2rem; }
 }
 
 /* ---------- CAPA DE ENTRADA ("Abrir convite") — garante que a música comece já na abertura ---------- */

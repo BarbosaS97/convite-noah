@@ -13,7 +13,7 @@
   <meta property="og:image" content="public/assets/images/poster.jpg">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232f5bff'/%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%23ffcf3d' stroke-width='4'/%3E%3Ctext x='32' y='46' font-size='40' font-weight='900' text-anchor='middle' fill='white' font-family='Arial Black,Arial'%3E4%3C/text%3E%3C/svg%3E">
 
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=18">
   <script>
     /* Modo "capa": 'js' esconde itens até rolar e 'wait' mostra a capa "Abrir convite" (o script.js remove 'wait').
        Se o script.js não carregar ou quebrar, após 4 s tudo volta ao modo simples (conteúdo visível, sem capa). */
@@ -72,32 +72,53 @@
 
   <main id="convite" class="page">
 
-    <!-- ===================== 1) VÍDEO (primeiro) + NOME ===================== -->
-    <!--
-      HERÓIS (imagens em public/assets/heroes/): ficam ao fundo, espiando por trás dos blocos da página.
-      Para trocar um herói, coloque a nova imagem em tools/heroes-originais/<nome>.png|jpg e rode
-      `python tools/process-heroes.py` (remove o fundo e gera os .webp), ou substitua o .webp em public/assets/heroes/.
-    -->
-    <div class="stage">
-    <section class="video" aria-labelledby="video-title">
-      <h2 id="video-title" class="sr-only">Vídeo de aniversário do Noah</h2>
-      <div class="vwrap is-portrait" id="vwrap">
-        <header class="vhead">
-          <div class="vhead__title">
-            <p class="title__kicker">Aniversário do</p>
-            <h1 class="name" aria-label="Noah">
+    <!-- ===================== 1) TOPO: NOME ===================== -->
+    <header class="top">
+      <p class="title__kicker">Aniversário do</p>
+      <h1 class="name" aria-label="Noah">
           <span class="ch" data-c="N" style="--k:0;--r:-5deg;--y:.02em" aria-hidden="true">N</span><span class="ch" data-c="O" style="--k:1;--r:3deg;--y:-.02em" aria-hidden="true">O</span><span class="ch" data-c="A" style="--k:2;--r:-3deg;--y:.02em" aria-hidden="true">A</span><span class="ch" data-c="H" style="--k:3;--r:5deg;--y:-.01em" aria-hidden="true">H</span>
         </h1>
-            <div class="age" aria-label="4 anos">
+      <div class="age" aria-label="4 anos">
           <span class="age__burst" aria-hidden="true"><span class="age__num">4</span></span>
           <span class="age__txt" data-c="ANOS" aria-hidden="true">ANOS</span>
         </div>
-          </div>
-          <div class="noah-top">
-            <img src="public/assets/images/noah-spider-s.webp" srcset="public/assets/images/noah-spider-s.webp 398w, public/assets/images/noah-spider.webp 711w" sizes="(min-width: 720px) 190px, 42vw" width="398" height="560" alt="Noah vestido de Homem-Aranha, lançando teia" fetchpriority="high" decoding="async">
-          </div>
-        </header>
+    </header>
 
+    <!-- ===================== 2) NOAH (grande, no centro) + SUPER-HERÓIS (menores, nas laterais) =====================
+         Trocar um herói: coloque a nova imagem em tools/heroes-originais/<nome>.png|jpg e rode `python tools/process-heroes.py`,
+         ou substitua o .webp em public/assets/heroes/. A mesma composição se repete no rodapé. -->
+    <section class="lineup" aria-label="Noah e os super-heróis">
+        <div class="lineup__side">
+          <div class="hero hero--ironman" style="--glow:#ffb020">
+            <img src="public/assets/heroes/ironman.webp" srcset="public/assets/heroes/ironman-s.webp 360w, public/assets/heroes/ironman.webp 542w" sizes="(min-width: 720px) 130px, 25vw" width="542" height="548" alt="Homem de Ferro infantil com a mão pronta para disparar" decoding="async">
+          </div>
+          <div class="hero hero--hulk" style="--glow:#7cff4a">
+            <img src="public/assets/heroes/hulk.webp" width="288" height="453" alt="Hulk infantil de punhos fechados" decoding="async">
+          </div>
+          <div class="hero hero--batman" style="--glow:#ffd83a">
+            <img src="public/assets/heroes/batman.webp" srcset="public/assets/heroes/batman-s.webp 360w, public/assets/heroes/batman.webp 411w" sizes="(min-width: 720px) 130px, 25vw" width="411" height="348" alt="Batman infantil voando com a capa aberta" decoding="async">
+          </div>
+        </div>
+        <div class="lineup__noah">
+          <img src="public/assets/images/noah-spider-s.webp" srcset="public/assets/images/noah-spider-s.webp 398w, public/assets/images/noah-spider.webp 711w" sizes="(min-width: 720px) 250px, 54vw" width="398" height="560" alt="Noah vestido de Homem-Aranha, lançando teia" fetchpriority="high" decoding="async">
+        </div>
+        <div class="lineup__side">
+          <div class="hero hero--captain" style="--glow:#5f9bff">
+            <img src="public/assets/heroes/captain.webp" srcset="public/assets/heroes/captain-s.webp 305w, public/assets/heroes/captain.webp 441w" sizes="(min-width: 720px) 130px, 25vw" width="441" height="695" alt="Capitão América infantil com o escudo" decoding="async">
+          </div>
+          <div class="hero hero--thor" style="--glow:#6fd6ff">
+            <img src="public/assets/heroes/thor.webp" srcset="public/assets/heroes/thor-s.webp 339w, public/assets/heroes/thor.webp 442w" sizes="(min-width: 720px) 130px, 25vw" width="442" height="626" alt="Thor infantil com o martelo Mjölnir" decoding="async">
+          </div>
+          <div class="hero hero--panther" style="--glow:#c58cff">
+            <img src="public/assets/heroes/panther.webp" srcset="public/assets/heroes/panther-s.webp 259w, public/assets/heroes/panther.webp 475w" sizes="(min-width: 720px) 130px, 25vw" width="475" height="880" alt="Pantera Negra infantil em posição de luta" decoding="async">
+          </div>
+        </div>
+      </section>
+
+    <!-- ===================== 3) VÍDEO ===================== -->
+    <section class="video" aria-labelledby="video-title">
+      <h2 id="video-title" class="sr-only">Vídeo de aniversário do Noah</h2>
+      <div class="vwrap is-portrait" id="vwrap">
       <!-- >>> ONDE COLOCAR O VÍDEO: public/assets/video/aniversario.mp4  (caminho definido em config.js) <<< -->
       <div class="frame" id="frame">
         <i class="frame__star frame__star--tl" aria-hidden="true"></i>
@@ -135,7 +156,6 @@
       </div>
       </div>
     </section>
-    </div><!-- /stage -->
 
     <div class="intro">
       <p class="tagline reveal">Uma aventura heroica está começando!</p>
@@ -150,61 +170,36 @@
         </div>
     </div>
 
-    <div class="slot slot--left invited-slot reveal" style="--s:1">
-      <div class="hero hero--spiderman peek" style="--glow:#ff3b4e">
-        <img src="public/assets/heroes/spiderman.webp" width="352" height="447" alt="Homem-Aranha infantil em posição de ataque" fetchpriority="high" decoding="async">
-        </div>
-      <p class="invited"><span>Você está convidado!</span></p>
-    </div>
+    <p class="invited reveal"><span>Você está convidado!</span></p>
 
-    <!-- ===================== 3) INFORMAÇÕES DA FESTA ===================== -->
+    <!-- ===================== 4) INFORMAÇÕES DA FESTA ===================== -->
     <section class="info" aria-label="Informações da festa">
-      <div class="slot slot--right reveal" style="--d:0s;--s:1.02">
-        <div class="hero hero--ironman peek" style="--glow:#ffb020">
-          <img src="public/assets/heroes/ironman.webp" srcset="public/assets/heroes/ironman-s.webp 360w, public/assets/heroes/ironman.webp 542w" sizes="(min-width:1280px) 240px, 30vw" width="542" height="548" alt="Homem de Ferro infantil com a mão pronta para disparar" decoding="async">
-        </div>
-        <article class="card" style="--accent:#e11d3f;--tagc:#fff">
+      <article class="card reveal" style="--d:0s;--accent:#e11d3f;--tagc:#fff">
         <span class="card__icon" aria-hidden="true">
           <svg viewBox="0 0 64 64"><g stroke="#0a0f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="12" width="48" height="45" rx="7" fill="#fff"/><path d="M8 19a7 7 0 0 1 7-7h34a7 7 0 0 1 7 7v10H8z" fill="#ffc41f"/><path d="M21 5v14M43 5v14" fill="none" stroke-width="6"/><path d="M19 39h7M30 39h7M41 39h4M19 48h7M30 48h7" fill="none" stroke="#e11d3f" stroke-width="4.4"/></g></svg>
         </span>
         <div class="card__body"><h3>DATA</h3><p data-field="data">DATA A DEFINIR</p></div>
       </article>
-      </div>
-      <div class="slot slot--left reveal" style="--d:.1s;--s:1.06">
-        <div class="hero hero--hulk peek" style="--glow:#7cff4a">
-          <img src="public/assets/heroes/hulk.webp" width="288" height="453" alt="Hulk infantil de punhos fechados" decoding="async">
-        </div>
-        <article class="card" style="--accent:#ffc41f;--tagc:#0a0f3a">
+      <article class="card reveal" style="--d:.1s;--accent:#ffc41f;--tagc:#0a0f3a">
         <span class="card__icon" aria-hidden="true">
           <svg viewBox="0 0 64 64"><g stroke="#0a0f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="15" cy="15" r="8" fill="#e11d3f"/><circle cx="49" cy="15" r="8" fill="#e11d3f"/><circle cx="32" cy="35" r="23" fill="#fff"/><path d="M32 35V21M32 35l10 7" fill="none" stroke-width="5"/><circle cx="32" cy="35" r="2.4" fill="#0a0f3a"/></g></svg>
         </span>
         <div class="card__body"><h3>HORÁRIO</h3><p data-field="horario">HORÁRIO A DEFINIR</p></div>
       </article>
-      </div>
-      <div class="slot slot--right reveal" style="--d:.2s;--s:.86">
-        <div class="hero hero--batman peek" style="--glow:#ffd83a">
-          <img src="public/assets/heroes/batman.webp" srcset="public/assets/heroes/batman-s.webp 360w, public/assets/heroes/batman.webp 411w" sizes="(min-width:1280px) 260px, 34vw" width="411" height="348" alt="Batman infantil voando com a capa aberta" decoding="async">
-        </div>
-        <article class="card" style="--accent:#2352e0;--tagc:#fff">
+      <article class="card reveal" style="--d:.2s;--accent:#2352e0;--tagc:#fff">
         <span class="card__icon" aria-hidden="true">
           <svg viewBox="0 0 64 64"><g stroke="#0a0f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M32 4C20 4 11 13 11 25c0 15 21 35 21 35s21-20 21-35C53 13 44 4 32 4Z" fill="#e11d3f"/><circle cx="32" cy="25" r="9" fill="#fff"/></g></svg>
         </span>
         <div class="card__body"><h3>LOCAL</h3><p data-field="local">LOCAL A DEFINIR</p></div>
       </article>
-      </div>
     </section>
 
-    <!-- ===================== 4) CONFIRMAÇÃO ===================== -->
+    <!-- ===================== 5) CONFIRMAÇÃO ===================== -->
     <section class="rsvp reveal" aria-labelledby="rsvp-title">
-      <div class="slot slot--left" style="--s:1">
-        <div class="hero hero--captain peek" style="--glow:#5f9bff">
-          <img src="public/assets/heroes/captain.webp" srcset="public/assets/heroes/captain-s.webp 305w, public/assets/heroes/captain.webp 441w" sizes="(min-width:1280px) 190px, 28vw" width="441" height="695" alt="Capitão América infantil com o escudo" decoding="async">
-        </div>
       <div class="bubble">
         <h2 id="rsvp-title" class="bubble__title">Confirme sua <em>presença</em></h2>
         <p class="rsvp__sub">Toque no botão e avise a gente pelo WhatsApp.</p>
         <i class="bubble__tail" aria-hidden="true"></i>
-      </div>
       </div>
       <!-- o link vem de config.js (whatsappLink) -->
       <a class="btn btn--hero" id="rsvp" href="#" rel="noopener">
@@ -213,13 +208,9 @@
       </a>
     </section>
 
-    <!-- ===================== 5) LOCALIZAÇÃO ===================== -->
+    <!-- ===================== 6) LOCALIZAÇÃO ===================== -->
     <section class="map reveal" aria-labelledby="map-title">
       <h2 id="map-title" class="tag">Como chegar</h2>
-      <div class="slot slot--right" style="--s:1">
-        <div class="hero hero--thor peek" style="--glow:#6fd6ff">
-          <img src="public/assets/heroes/thor.webp" srcset="public/assets/heroes/thor-s.webp 339w, public/assets/heroes/thor.webp 442w" sizes="(min-width:1280px) 200px, 30vw" width="442" height="626" alt="Thor infantil com o martelo Mjölnir" decoding="async">
-        </div>
       <div class="map__canvas" id="mapCanvas">
         <svg class="map__art" viewBox="0 0 600 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
           <defs><pattern id="ht" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.6" fill="#ff9d2e" opacity=".5"/></pattern></defs>
@@ -235,7 +226,6 @@
         </svg>
         <p class="map__text" data-field="localizacaoTexto">LOCALIZAÇÃO_AQUI</p>
       </div>
-      </div>
       <!-- o link vem de config.js (localizacaoUrl) -->
       <a class="btn btn--blue" id="mapBtn" href="#" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
@@ -243,12 +233,36 @@
       </a>
     </section>
 
-    <!-- ===================== 6) RODAPÉ: PERSONAGENS ===================== -->
+    <!-- ===================== 7) FINAL: NOAH + SUPER-HERÓIS DE NOVO ===================== -->
     <footer class="foot">
       <p class="foot__msg reveal">Te esperamos para essa aventura!</p>
-      <div class="hero hero--panther peek stand" style="--glow:#c58cff">
-          <img src="public/assets/heroes/panther.webp" srcset="public/assets/heroes/panther-s.webp 259w, public/assets/heroes/panther.webp 475w" sizes="(min-width:1280px) 170px, 22vw" width="475" height="880" alt="Pantera Negra infantil em posição de luta" decoding="async">
+      <section class="lineup lineup--end" aria-hidden="true">
+        <div class="lineup__side">
+          <div class="hero hero--ironman" style="--glow:#ffb020">
+            <img src="public/assets/heroes/ironman.webp" srcset="public/assets/heroes/ironman-s.webp 360w, public/assets/heroes/ironman.webp 542w" sizes="(min-width: 720px) 130px, 25vw" width="542" height="548" alt="" decoding="async">
+          </div>
+          <div class="hero hero--hulk" style="--glow:#7cff4a">
+            <img src="public/assets/heroes/hulk.webp" width="288" height="453" alt="" decoding="async">
+          </div>
+          <div class="hero hero--batman" style="--glow:#ffd83a">
+            <img src="public/assets/heroes/batman.webp" srcset="public/assets/heroes/batman-s.webp 360w, public/assets/heroes/batman.webp 411w" sizes="(min-width: 720px) 130px, 25vw" width="411" height="348" alt="" decoding="async">
+          </div>
         </div>
+        <div class="lineup__noah">
+          <img src="public/assets/images/noah-spider-s.webp" srcset="public/assets/images/noah-spider-s.webp 398w, public/assets/images/noah-spider.webp 711w" sizes="(min-width: 720px) 250px, 54vw" width="398" height="560" alt="" decoding="async">
+        </div>
+        <div class="lineup__side">
+          <div class="hero hero--captain" style="--glow:#5f9bff">
+            <img src="public/assets/heroes/captain.webp" srcset="public/assets/heroes/captain-s.webp 305w, public/assets/heroes/captain.webp 441w" sizes="(min-width: 720px) 130px, 25vw" width="441" height="695" alt="" decoding="async">
+          </div>
+          <div class="hero hero--thor" style="--glow:#6fd6ff">
+            <img src="public/assets/heroes/thor.webp" srcset="public/assets/heroes/thor-s.webp 339w, public/assets/heroes/thor.webp 442w" sizes="(min-width: 720px) 130px, 25vw" width="442" height="626" alt="" decoding="async">
+          </div>
+          <div class="hero hero--panther" style="--glow:#c58cff">
+            <img src="public/assets/heroes/panther.webp" srcset="public/assets/heroes/panther-s.webp 259w, public/assets/heroes/panther.webp 475w" sizes="(min-width: 720px) 130px, 25vw" width="475" height="880" alt="" decoding="async">
+          </div>
+        </div>
+      </section>
     </footer>
   </main>
 
@@ -260,7 +274,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="config.js?v=14" charset="utf-8"></script>
-  <script src="script.js?v=14" charset="utf-8" defer></script>
+  <script src="config.js?v=18" charset="utf-8"></script>
+  <script src="script.js?v=18" charset="utf-8" defer></script>
 </body>
 </html>

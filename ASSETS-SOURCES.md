@@ -9,7 +9,7 @@
 
 | Personagem | Arquivo usado | URL de origem | Autor/criador | Licença | Observações |
 |---|---|---|---|---|---|
-| Homem-Aranha | `spiderman.webp` | **desconhecida** (arquivo fornecido pelo usuário) | desconhecido | **não verificada** | Arte de fã (chibi). Personagem: marca Marvel/Disney. Fundo (xadrez) removido. |
+| Homem-Aranha (chibi; hoje sem uso — o Homem-Aranha da página é a foto do Noah) | `spiderman.webp` | **desconhecida** (arquivo fornecido pelo usuário) | desconhecido | **não verificada** | Arte de fã (chibi). Personagem: marca Marvel/Disney. Fundo (xadrez) removido. |
 | Homem de Ferro | `ironman.webp` | **desconhecida** (fornecido pelo usuário) | desconhecido | **não verificada** | Arte de fã com contorno de adesivo. Contém um logotipo "MARVEL" pequeno no pé, mantido como veio. Fundo removido. |
 | Hulk | `hulk.webp` | **desconhecida** (fornecido pelo usuário) | desconhecido (há assinatura do artista no canto inferior esquerdo) | **não verificada** | Fundo cinza e sombra no chão removidos; assinatura mantida. |
 | Batman | `batman.webp` | **desconhecida** (fornecido pelo usuário) | desconhecido (há assinatura do artista perto da capa) | **não verificada** | Personagem: marca DC/Warner Bros. Fundo (xadrez) removido; assinatura mantida. |
