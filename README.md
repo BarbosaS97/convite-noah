@@ -1,7 +1,8 @@
 # Convite de aniversário do Noah, 4 anos
 
-Convite web de uma página só (HTML + CSS + JavaScript, sem bibliotecas), mobile first, em estilo quadrinhos
-com os sete super-heróis emoldurando o vídeo.
+Convite web de uma página só (HTML + CSS + JavaScript, sem bibliotecas), mobile first, em estilo quadrinhos.
+Ordem da página: capa "Abrir convite" (foto do Noah) → **vídeo** → informações (data, horário, local) → confirmação → mapa.
+Os sete super-heróis ficam ao fundo, espiando por trás dos blocos.
 
 ## Como executar
 
@@ -35,12 +36,14 @@ O botão **Música** liga/desliga. Se o arquivo não existir, o botão e a capa 
 
 ## Foto da capa
 
-A foto do Noah que aparece acima do botão "Abrir convite" é `public/assets/images/noah-capa.webp`. Para trocar, salve outra
-imagem com fundo transparente (recortada da cintura para cima) com esse nome, ou mude o `src` no `index.html` (procure `cover__photo`).
+A foto do Noah (Homem-Aranha em pose de ação) aparece na capa acima do botão "Abrir convite" e no topo, ao lado do nome. Arquivos:
+`public/assets/images/noah-spider.webp` (grande) e `noah-spider-s.webp` (menor, para o topo). Para trocar, gere duas versões com fundo transparente
+com esses nomes, ou mude o `src` no `index.html` (procure `cover__photo` e `noah-top`).
 
 ## Super-heróis
 
-Ficam em `public/assets/heroes/*.webp` (fundo transparente). Para trocar um herói, coloque a nova imagem em
+Ficam em `public/assets/heroes/*.webp` (fundo transparente), ao fundo: cada um espia por trás de um bloco da página
+(Homem-Aranha no vídeo; Homem de Ferro, Hulk e Batman nos cards; Capitão no balão de confirmação; Thor no mapa; Pantera no rodapé). Para trocar um herói, coloque a nova imagem em
 `tools/heroes-originais/<nome>.png` (nomes: `spiderman`, `ironman`, `hulk`, `batman`, `captain`, `thor`, `panther`)
 e rode `python tools/process-heroes.py` (remove o fundo e gera os `.webp`). Depois ajuste `width`/`height` da `<img>`
 correspondente em `index.html` se a proporção mudar.
@@ -58,7 +61,7 @@ Para a **prévia no WhatsApp**, em `index.html` troque o `og:image` pelo endere�
 2. No GitHub: **Settings > Pages > Build and deployment > Deploy from a branch > main / (root)**.
 3. Abra o endereço `https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/` (não abra o `index.html` pela tela do repositório nem pelo
    "raw": ali o site não funciona).
-4. Se atualizar e o celular mostrar a versão antiga, feche a aba e abra de novo (os arquivos levam `?v=6` para forçar a atualização;
+4. Se atualizar e o celular mostrar a versão antiga, feche a aba e abra de novo (os arquivos levam `?v=9` para forçar a atualização;
    ao mudar algo, aumente esse número no `index.html`).
 5. **Diagnóstico:** acrescente `?debug` ao endereço (ex.: `.../repo/?debug`) para ver na tela qualquer erro de JavaScript.
 

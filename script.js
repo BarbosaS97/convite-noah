@@ -152,7 +152,7 @@
   updateDock();
 
   /* ---------- VÍDEO ---------- */
-  const player = $('#player'), frame = $('#frame'), video = $('#video'), fallback = $('#fallback');
+  const player = $('#player'), frame = $('#frame'), vwrap = $('#vwrap'), video = $('#video'), fallback = $('#fallback');
   const btnPlay = $('#play'), btnToggle = $('#toggle'), btnFull = $('#full'), progress = $('#progress');
   let userPaused = false;
   let dead = false;
@@ -163,7 +163,7 @@
     dead = true;
     player.dataset.state = 'fallback';
     fallback.hidden = false;
-    frame.classList.remove('is-portrait');
+    vwrap.classList.remove('is-portrait');
     frame.style.setProperty('--vr', '16 / 9'); player.style.setProperty('--vr', '16 / 9');   // poster de fallback é 16:9
     video.removeAttribute('src'); video.load();
     console.info('[convite] Vídeo não encontrado em "' + C.video + '". Coloque o arquivo nesse caminho (veja config.js / README).');
@@ -176,7 +176,8 @@
     if (video.videoWidth && video.videoHeight) {
       frame.style.setProperty('--vr', `${video.videoWidth} / ${video.videoHeight}`);
       player.style.setProperty('--vr', `${video.videoWidth} / ${video.videoHeight}`);
-      frame.classList.toggle('is-portrait', video.videoHeight > video.videoWidth * 1.1);
+      vwrap.style.setProperty('--ar', (video.videoWidth / video.videoHeight).toFixed(4));
+      vwrap.classList.toggle('is-portrait', video.videoHeight > video.videoWidth * 1.1);
     }
     if (player.dataset.state === 'loading') setState('paused');
     tryAutoplay();

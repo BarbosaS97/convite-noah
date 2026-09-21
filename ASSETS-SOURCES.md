@@ -55,12 +55,12 @@ personagens continuam sendo marcas Marvel/DC. Para usá-los, copie o WebP gerado
 - **Autor/detentor:** Disney / Marvel. **Licença:** todos os direitos reservados (não verificável).
 - **Edição:** MP3 128 kbps com *fade* de entrada e saída; o original está em `tools/audio-original/`.
 
-## 3.1 Foto da capa (public/assets/images/noah-capa.webp)
+## 3.1 Fotos do Noah (public/assets/images/noah-spider*.webp)
 
-- **Origem:** foto do Noah vestido de Homem-Aranha, fornecida por você (arquivo original
-  `Gemini_Generated_Image_…-removebg-preview.png`, já com fundo transparente). O nome indica que a imagem foi gerada/editada
-  com IA (Google Gemini) e o fundo removido com remove.bg. Guardada em `tools/fotos-originais/`.
-- **Edição:** recorte da cintura para cima e conversão para WebP (27 KB).
+- **Origem:** imagem do Noah vestido de Homem-Aranha, fornecida por você (arquivo original `ChatGPT Image 21 de set. de 2026, 17_42_00.png`,
+  já com fundo transparente). O nome indica que foi gerada/editada com IA (ChatGPT/OpenAI). Guardada em `tools/fotos-originais/`.
+  A foto anterior (`noah-homem-aranha-original.png`, indicada como Google Gemini + remove.bg) também está lá e não é mais usada.
+- **Edição:** recorte das margens transparentes e conversão para WebP (versão grande de 139 KB para a capa e pequena de 49 KB para o topo).
 - **Licença:** material seu (imagem de criança da família); use e compartilhe conforme sua decisão. O traje reproduz um personagem
   da Marvel/Disney.
 
