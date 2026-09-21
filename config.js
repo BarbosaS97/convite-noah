@@ -24,6 +24,11 @@ window.CONVITE = {
   localizacaoUrl:   'LOCALIZAÇÃO_AQUI',  // link do Google Maps / Waze (https://...)
   mapaEmbedUrl:     '',                  // OPCIONAL: URL "incorporar mapa" do Google Maps (https://www.google.com/maps/embed?...)
 
+  /* ---- CAPA DE ENTRADA ----
+     true  = se o navegador bloquear o som automático, aparece a capa "ABRIR CONVITE": 1 toque abre o convite e já toca a música.
+     false = sem capa (a música começa no primeiro toque/clique do visitante).  */
+  capaDeEntrada: true,
+
   /* ---- MÍDIA ---- */
   video:  'public/assets/video/aniversario.mp4',  // <- COLOQUE SEU VÍDEO NESTE CAMINHO (ou mude o nome aqui)
   musica: 'public/assets/audio/musica.mp3',       // única fonte de som do convite (o vídeo é mudo). Toca ao abrir/primeiro toque; botão "Música" liga/desliga

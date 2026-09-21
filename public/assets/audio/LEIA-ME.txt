@@ -1,0 +1,7 @@
+COLOQUE A MÚSICA AQUI
+
+Arquivo: musica.mp3  (nesta pasta)
+- Toca em loop e é a única fonte de som do convite (o vídeo é mudo).
+- Começa automaticamente ao abrir; no celular, o primeiro toque na capa "ABRIR CONVITE" libera o som.
+- Para usar outro nome ou caminho, altere "musica" no arquivo config.js.
+- Se o arquivo não existir, o botão "Música" e a capa não aparecem.

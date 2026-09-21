@@ -9,15 +9,34 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Noah faz 4 anos! Você está convidado">
   <meta property="og:description" content="Uma aventura heroica está começando! Toque para ver o convite.">
-  <!-- Para a prévia no WhatsApp: publique o site e troque por a URL ABSOLUTA da imagem, ex.: https://seudominio.com/public/assets/images/poster.jpg -->
+  <!-- Para a prévia no WhatsApp: publique o site e troque pela URL ABSOLUTA da imagem, ex.: https://seudominio.com/public/assets/images/poster.jpg -->
   <meta property="og:image" content="public/assets/images/poster.jpg">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232f5bff'/%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%23ffcf3d' stroke-width='4'/%3E%3Ctext x='32' y='46' font-size='40' font-weight='900' text-anchor='middle' fill='white' font-family='Arial Black,Arial'%3E4%3C/text%3E%3C/svg%3E">
 
-  <link rel="preload" href="public/assets/fonts/luckiest-guy-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>
+    /* 'wait' mostra a capa "Abrir convite" (o script.js remove). Se o script falhar, a capa some sozinha após 4 s. */
+    document.documentElement.classList.add('js', 'wait');
+    setTimeout(function () { if (!window.__convite) document.documentElement.classList.remove('wait'); }, 4000);
+  </script>
 </head>
 <body>
+  <!-- capa de entrada: 1 toque = abre o convite e já começa a música (navegadores só permitem áudio após um toque) -->
+  <div class="cover" id="cover" role="dialog" aria-modal="true" aria-labelledby="cover-msg">
+    <div class="cover__inner">
+      <p class="cover__kicker">Aniversário do</p>
+      <div class="name" aria-hidden="true">
+        <span class="ch" data-c="N" style="--k:0;--r:-5deg;--y:.02em">N</span><span class="ch" data-c="O" style="--k:1;--r:3deg;--y:-.02em">O</span><span class="ch" data-c="A" style="--k:2;--r:-3deg;--y:.02em">A</span><span class="ch" data-c="H" style="--k:3;--r:5deg;--y:-.01em">H</span>
+      </div>
+      <p class="cover__msg" id="cover-msg">Você recebeu um convite especial!</p>
+      <button class="btn btn--hero cover__btn" id="coverBtn" type="button">ABRIR CONVITE</button>
+      <p class="cover__hint">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.6L12 18.5v-13L7.6 9.5H4Z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+        Com música
+      </p>
+    </div>
+  </div>
+
   <a class="skip" href="#convite">Ir para o convite</a>
 
   <!-- fundo cinematográfico -->
@@ -218,3 +237,4 @@
   <script src="script.js" charset="utf-8" defer></script>
 </body>
 </html>
+

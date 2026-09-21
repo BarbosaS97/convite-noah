@@ -1,0 +1,8 @@
+COLOQUE O VÍDEO AQUI
+
+Arquivo: aniversario.mp4  (nesta pasta)
+- Funciona vertical (9:16) ou horizontal (16:9); a moldura se ajusta sozinha.
+- O vídeo toca SEM som: o único som do convite é a música (public/assets/audio/musica.mp3).
+- Para usar outro nome ou caminho, altere "video" no arquivo config.js.
+- Dica para celular: prefira H.264/AAC, até ~1200 kb/s (para ficar leve).
+- Se o arquivo não existir, o convite mostra um cartão "Nosso vídeo especial está chegando!".

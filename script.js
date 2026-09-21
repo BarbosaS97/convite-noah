@@ -4,6 +4,7 @@
    ========================================================================== */
 (() => {
   'use strict';
+  window.__convite = true;
 
   const C = Object.assign({
     data: 'DATA A DEFINIR', horario: 'HORÁRIO A DEFINIR', local: 'LOCAL A DEFINIR',
@@ -71,16 +72,31 @@
     box.appendChild(frag);
   }
 
-  /* ---------- elementos que aparecem ao rolar ---------- */
-  const reveals = $$('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    reveals.forEach((el) => io.observe(el));
-  } else {
-    reveals.forEach((el) => el.classList.add('in'));
+  /* ---------- elementos que aparecem ao rolar (iniciam quando o convite abre) ---------- */
+  function initReveals() {
+    const reveals = $$('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      reveals.forEach((el) => io.observe(el));
+    } else {
+      reveals.forEach((el) => el.classList.add('in'));
+    }
   }
+
+  /* ---------- capa de entrada ---------- */
+  const cover = $('#cover'), coverBtn = $('#coverBtn');
+  const coverEnabled = C.capaDeEntrada !== false && !!cover;
+  let opened = false;
+  function openInvite() {
+    if (opened) return;
+    opened = true;
+    document.documentElement.classList.remove('wait');
+    if (cover) { cover.classList.add('is-closing'); setTimeout(() => { cover.hidden = true; }, 800); }
+    initReveals();
+  }
+  if (coverEnabled) { coverBtn.focus({ preventScroll: true }); } else { openInvite(); }
 
   /* ---------- toque num herói = pulinho ---------- */
   document.addEventListener('click', (e) => {
@@ -234,8 +250,10 @@
   }
 
   audio.addEventListener('loadedmetadata', () => { musicBtn.hidden = false; });   // botão só aparece se o arquivo existir
-  audio.addEventListener('canplay', startMusic, { once: true });
-  audio.addEventListener('error', () => { musicBtn.hidden = true; console.info('[convite] Música não encontrada em "' + C.musica + '" — botão ocultado.'); });
+  audio.addEventListener('error', () => {
+    musicBtn.hidden = true; openInvite();                                          // sem arquivo de música: não prende o visitante na capa
+    console.info('[convite] Música não encontrada em "' + C.musica + '" — botão ocultado.');
+  });
   audio.addEventListener('play', syncMusicUI);
   audio.addEventListener('pause', syncMusicUI);
   musicBtn.addEventListener('click', () => {
@@ -250,6 +268,19 @@
     if (document.hidden) { if (!audio.paused) audio.pause(); }
     else startMusic();
   });
+  // botão da capa: o toque libera o áudio no navegador
+  if (coverBtn) coverBtn.addEventListener('click', () => {
+    userOff = false;
+    const p = audio.play();
+    const done = () => openInvite();
+    if (p && p.then) p.then(done, done); else done();
+  });
+
   audio.src = C.musica;
   syncMusicUI();
+  // 1) tenta tocar já na abertura (funciona onde o navegador permite)
+  const first = audio.play();
+  if (first && first.then) {
+    first.then(openInvite).catch(() => { if (!coverEnabled) armFirstGesture(); });   // 2) bloqueado: a capa pede o toque
+  }
 })();
