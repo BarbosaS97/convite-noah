@@ -33,6 +33,11 @@ A música fica em **`public/assets/audio/musica.mp3`**. O convite tenta tocá-la
 bloqueiam som automático, no celular aparece a capa **ABRIR CONVITE**: um toque abre o convite e a música começa.
 O botão **Música** liga/desliga. Se o arquivo não existir, o botão e a capa não aparecem.
 
+## Foto da capa
+
+A foto do Noah que aparece acima do botão "Abrir convite" é `public/assets/images/noah-capa.webp`. Para trocar, salve outra
+imagem com fundo transparente (recortada da cintura para cima) com esse nome, ou mude o `src` no `index.html` (procure `cover__photo`).
+
 ## Super-heróis
 
 Ficam em `public/assets/heroes/*.webp` (fundo transparente). Para trocar um herói, coloque a nova imagem em
@@ -46,6 +51,16 @@ Envie **apenas** estes itens (Netlify, Vercel, Cloudflare Pages, GitHub Pages ou
 `index.html`, `styles.css`, `script.js`, `config.js` e a pasta `public/`. A pasta `tools/` é só de desenvolvimento.
 Para a **prévia no WhatsApp**, em `index.html` troque o `og:image` pelo endereço completo da imagem publicada, por exemplo
 `https://seusite.com/public/assets/images/poster.jpg`.
+
+## Publicar no GitHub Pages (passo a passo)
+
+1. Suba **todos** os itens acima para a raiz do repositório (o arquivo `.nojekyll` também).
+2. No GitHub: **Settings > Pages > Build and deployment > Deploy from a branch > main / (root)**.
+3. Abra o endereço `https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/` (não abra o `index.html` pela tela do repositório nem pelo
+   "raw": ali o site não funciona).
+4. Se atualizar e o celular mostrar a versão antiga, feche a aba e abra de novo (os arquivos levam `?v=6` para forçar a atualização;
+   ao mudar algo, aumente esse número no `index.html`).
+5. **Diagnóstico:** acrescente `?debug` ao endereço (ex.: `.../repo/?debug`) para ver na tela qualquer erro de JavaScript.
 
 ## Estrutura
 

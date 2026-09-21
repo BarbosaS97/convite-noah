@@ -4,7 +4,10 @@
    ========================================================================== */
 (() => {
   'use strict';
-  window.__convite = true;
+  // diagnóstico: abra o site com ?debug no final do endereço para ver erros na tela
+  if (/[?&]debug/.test(location.search)) {
+    addEventListener('error', (e) => { const d = document.createElement('pre'); d.style.cssText = 'position:fixed;z-index:9999;left:0;right:0;bottom:0;margin:0;padding:8px;background:#900;color:#fff;font:12px monospace;white-space:pre-wrap'; d.textContent = 'ERRO: ' + e.message + ' (' + (e.filename || '').split('/').pop() + ':' + e.lineno + ')'; document.body.appendChild(d); });
+  }
 
   const C = Object.assign({
     data: 'DATA A DEFINIR', horario: 'HORÁRIO A DEFINIR', local: 'LOCAL A DEFINIR',
@@ -75,6 +78,15 @@
   /* ---------- elementos que aparecem ao rolar (iniciam quando o convite abre) ---------- */
   function initReveals() {
     const reveals = $$('.reveal');
+    // proteção extra: se o navegador atrasar o IntersectionObserver, a rolagem também revela (nunca fica conteúdo invisível)
+    let pending = reveals.slice(), tick = false;
+    const sweep = () => {
+      tick = false;
+      pending = pending.filter((el) => { if (el.getBoundingClientRect().top < innerHeight * 0.95) { el.classList.add('in'); return false; } return true; });
+    };
+    const onScroll = () => { if (!tick && pending.length) { tick = true; requestAnimationFrame(sweep); } };
+    addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll);
+    setTimeout(sweep, 1200);
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
@@ -87,7 +99,8 @@
 
   /* ---------- capa de entrada ---------- */
   const cover = $('#cover'), coverBtn = $('#coverBtn');
-  const coverEnabled = C.capaDeEntrada !== false && !!cover;
+  // sem 'wait' = a capa já foi fechada (fallback do HTML ou tempo esgotado): segue direto, sem prender o visitante
+  const coverEnabled = C.capaDeEntrada !== false && !!cover && document.documentElement.classList.contains('wait');
   let opened = false;
   function openInvite() {
     if (opened) return;
@@ -271,13 +284,13 @@
   // botão da capa: o toque libera o áudio no navegador
   if (coverBtn) coverBtn.addEventListener('click', () => {
     userOff = false;
-    const p = audio.play();
-    const done = () => openInvite();
-    if (p && p.then) p.then(done, done); else done();
+    try { const p = audio.play(); if (p && p.catch) p.catch(() => {}); } catch (e) { /* segue sem música */ }
+    openInvite();                                    // não depende do áudio: fecha na hora
   });
 
   audio.src = C.musica;
   syncMusicUI();
+  window.__ok = true;
   // 1) tenta tocar já na abertura (funciona onde o navegador permite)
   const first = audio.play();
   if (first && first.then) {

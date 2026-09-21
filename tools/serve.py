@@ -3,7 +3,7 @@
 import http.server, os, re, sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(os.environ.get('CONVITE_ROOT') or Path(__file__).resolve().parent.parent)
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
 
 
