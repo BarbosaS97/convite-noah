@@ -8,6 +8,9 @@
   if (/[?&]debug/.test(location.search)) {
     addEventListener('error', (e) => { const d = document.createElement('pre'); d.style.cssText = 'position:fixed;z-index:9999;left:0;right:0;bottom:0;margin:0;padding:8px;background:#900;color:#fff;font:12px monospace;white-space:pre-wrap'; d.textContent = 'ERRO: ' + e.message + ' (' + (e.filename || '').split('/').pop() + ':' + e.lineno + ')'; document.body.appendChild(d); });
   }
+  // modo exemplo: abra o site com ?demo no final do endereço para desligar "confirmar presença" e
+  // esconder o endereço (usado no portfólio). O link normal, já enviado aos convidados, não muda.
+  const isDemo = /[?&]demo(?:=1)?(?:&|$)/i.test(location.search);
 
   const C = Object.assign({
     data: 'DATA A DEFINIR', horario: 'HORÁRIO A DEFINIR', local: 'LOCAL A DEFINIR',
@@ -36,8 +39,22 @@
     if (v) el.textContent = v;
   });
 
+  /* ---------- modo exemplo (portfólio): some o endereço, sem mexer nos outros campos ---------- */
+  if (isDemo) {
+    const demoAddr = 'Endereço disponível para convidados confirmados';
+    ['local', 'localizacaoTexto'].forEach((field) => {
+      const el = $(`[data-field="${field}"]`);
+      if (el) el.textContent = demoAddr;
+    });
+  }
+
   /* ---------- botões de link (WhatsApp / mapa) ---------- */
   function wireLink(el, url, warning) {
+    if (isDemo) {
+      el.href = '#';
+      el.addEventListener('click', (e) => { e.preventDefault(); toast('Este é um convite de exemplo. Fale com a gente para criar o seu!'); });
+      return;
+    }
     if (isUrl(url)) {
       el.href = url.trim();
       el.target = '_blank';
@@ -51,7 +68,7 @@
   wireLink($('#dock'), C.whatsappLink, 'Link do WhatsApp ainda não configurado. Edite o arquivo config.js.');
   wireLink($('#mapBtn'), C.localizacaoUrl, 'Link da localização ainda não configurado. Edite o arquivo config.js.');
 
-  if (isUrl(C.mapaEmbedUrl)) {
+  if (isUrl(C.mapaEmbedUrl) && !isDemo) {
     const canvas = $('#mapCanvas');
     const f = document.createElement('iframe');
     f.src = C.mapaEmbedUrl; f.loading = 'lazy'; f.referrerPolicy = 'no-referrer-when-downgrade';
