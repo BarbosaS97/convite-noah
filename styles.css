@@ -309,7 +309,8 @@ button { font: inherit; }
 .foot { position: relative; margin-top: 3rem; text-align: center; overflow: hidden; overflow: clip; }
 .foot__msg { position: relative; z-index: 2; margin: 0 auto .8rem; padding-inline: 18px; max-width: 30ch; text-wrap: balance; font: 400 clamp(1.15rem, 5vw, 1.7rem)/1.15 var(--display); letter-spacing: .03em; color: #ffd23f; -webkit-text-stroke: .14em var(--ink-d); paint-order: stroke fill; text-shadow: .05em .07em 0 var(--ink-d); }
 .foot__credit { position: relative; z-index: 2; margin: .6rem 0 0; padding-bottom: 1.2rem; font: 400 .7rem/1 var(--body); letter-spacing: .02em; color: var(--muted); opacity: .55; }
-.foot__credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.foot__credit a, .top__credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.top__credit { margin: 0 0 .6rem; font: 400 .7rem/1 var(--body); letter-spacing: .02em; color: var(--muted); opacity: .55; }
 
 /* ---------- 7) BOTÕES (adesivos de HQ) ---------- */
 .btn, .dock {
